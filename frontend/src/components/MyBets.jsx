@@ -67,7 +67,7 @@ const buttonStyle = {
 };
 
 
-  const Platform = () => {
+  const MyBets = () => {
 
 
     useEffect(() => {
@@ -187,6 +187,27 @@ const handleClose = () => setShow(false);
         const allData = []
 
         for(var i=0;i<poolIds.length;i++){
+
+
+            var totalBetofUser = 0;
+            var betAnswerOfUser = "";
+            var bettedTokenSymbols = []
+            var bettedTokenAmounts = []
+
+            const userBets = await PoolBettingContract.getUserBets(i, account)
+
+            for(var j=0;j<userBets.length;j++){
+                if(Number(userBets[j].betAmount) > 0){
+
+                    bettedTokenSymbols.push(userBets[j].tokenSymbol)
+                    bettedTokenAmounts.push(userBets[j].betAmount)
+                    totalBetofUser+=Number(userBets[j].betAmount)
+                    betAnswerOfUser = userBets[j].betAnswer
+
+                }
+
+            }
+
             var obj = {
                 poolId: poolIds[i].toString(),
                 sport: sports[i],
@@ -199,12 +220,19 @@ const handleClose = () => setShow(false);
                 totalValues: totalValuesinPool[i].toString(),
                 supportedTokenNames: tokenNames[i],
                 supportedTokenSymbols: tokenSymbols[i],
-                currentokenValuesinPool: tokenValues[i]
-
-                
+                currentokenValuesinPool: tokenValues[i],
+                totalBetofGivenUser: totalBetofUser,
+                bettedTokenSymbolsOfUser : bettedTokenSymbols.toString(),
+                bettedTokenAmountsofUser: bettedTokenAmounts.toString(),   
+                betAnswerOfUser: betAnswerOfUser             
             }
+
             allData.push(obj)
         }
+
+       console.log(allData)
+
+
         
         setAllPools(allData);
 
@@ -304,7 +332,7 @@ const handleClose = () => setShow(false);
             <br />
                  <hr />
                  <br />
-                 <h2 style={{ textAlign: 'left'}}>Active Betting Pools</h2>
+                 <h2 style={{ textAlign: 'left'}}>My Bets</h2>
                 <p>Place bets with your $FAN Tokens and get a chance to win the prize pool !</p>
                 <Row xs={1} md={2} lg={3} className="g-4">
                 {allPools.map((pool, idx) => (
@@ -322,18 +350,12 @@ const handleClose = () => setShow(false);
                                     <strong>Deadline:</strong> {pool.deadline}<br/>
                                     <strong>Bettors:</strong> {pool.numberOfBettors}<br/>
                                     <strong>Total Tokens in Pool:</strong> {pool.totalValues}<br/>
-                                    <strong>Supported Tokens</strong> {pool.supportedTokenSymbols.toString()}<br/>
-                                    <strong>Current Tokens in Pool</strong> {pool.currentokenValuesinPool.toString()}<br/>
+                                    <hr />
+                                    <strong>Your Bet Answer</strong> {pool.betAnswerOfUser}<br/>
+                                    <strong>Your Total Bet (No of tokens)</strong> {pool.totalBetofGivenUser}<br/>
+                                    <strong>Your Bet Tokens </strong> {pool.bettedTokenSymbolsOfUser}<br/>
+                                    <strong>Your Bet Token Values </strong> {pool.bettedTokenAmountsofUser}<br/>
                                 </Card.Text>
-                                <Button onClick={()=>{
-
-                                    console.log("Clicked pool ID is ", pool.poolId)
-
-                                    setSelectedPoolId(pool.poolId)
-
-                                    setShow(true)
-
-                                }} variant='primary'>Place Bet</Button>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -346,4 +368,4 @@ const handleClose = () => setShow(false);
     );
 }
 
-export default Platform;
+export default MyBets;
