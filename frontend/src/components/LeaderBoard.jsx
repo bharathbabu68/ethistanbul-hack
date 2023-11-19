@@ -67,7 +67,7 @@ const buttonStyle = {
 };
 
 
-  const MyBets = () => {
+  const LeaderBoard = () => {
 
 
     useEffect(() => {
@@ -81,13 +81,22 @@ const handleClose = () => setShow(false);
 
 
 
-const supportedTokens = [
-    { name: 'ALFA Romeo FAN Token ', symbol: 'ALFA', address: '0x1a102e67001389cad23d0bcfc95deb696a3a8f83', quantity: 0 },
-    { name: 'HAAS Fan Token', symbol: 'HAAS', address: '0x9728eaE07B38BEeaC8e7CCb1b3F47C88C7602d99', quantity: 0 },
-    { name: 'MERC Fan Token', symbol: 'MERC', address: '0x5428AAa9410aeBB4A3013919Be54941503C798F0', quantity: 0 },
-    { name: 'Ferrari Fan Token', symbol: 'FERR', address: '0x28e36ACa19A83cE81d8D7A63bb51149186D5B5EB', quantity: 0 },
-    // Add more tokens here
-];
+    const supportedTokens = [
+        { name: 'Aston Martin Fan Token', symbol: 'ASTON', address: '0x47d75EE96a4603f310Ef3CD4564d3050301Ce785', quantity: 0 },
+        { name: 'Mercedes Fan Token', symbol: 'MERC', address: '0xB1bcA2bcED1F215d4DD4cC8ef98Cb3b3f434c2c3', quantity: 0 },
+        { name: 'Alfa Romeo Fan Token', symbol: 'ALFA', address: '0xf6e87dc0589eA568Cc027C03C86184101544BF68', quantity: 0 },
+        { name: 'Ferrari Fan Token', symbol: 'FERR', address: '0xA7b40eB4D7257EF38dCD5FA3BB720A2a38055C7d', quantity: 0 },
+        // Add more tokens here
+    ];
+
+
+    const leaderboardData = [
+        { name: '0x3427e266EdAf22a4ba80961D983e89E75cD3fc01', symbol: '12000', address: '24'},
+        { name: '0x5A5D02cdb3D8904d996feD9911EdfFe070d6E6EF', symbol: '8700', address: '14'},
+        { name: '0x0A04d6c616A334d7d9951b897FedDCEe87618c36', symbol: '5500', address: '12'},
+        { name: '0x0d83d5D75772F1dc0e8273a0C9f363A42473B8Bd', symbol: '2000', address: '9'},
+        // Add more tokens here
+    ];
 
     const [tokensInWallet, setTokensInWallet] = useState([])
     const [allPools, setAllPools] = useState([])
@@ -299,7 +308,7 @@ const supportedTokens = [
             <Container style={{ marginTop: "3%", textAlign:"left" }}>
                      <Row>
                     <Col md={10}>
-                    <h2 style={{ textAlign: 'left'}}>Your Wallet</h2>
+                    <h2 style={{ textAlign: 'left'}}>LeaderBoard</h2>
                     </Col>
                     <Col md={2}>
                         <Button onClick={connectWallet} variant='dark'>{connectWalletStatus}</Button>
@@ -308,23 +317,21 @@ const supportedTokens = [
                  <br />
                  
                  <p>Connected Wallet: {account}</p>
-                 <h5>Tokens Detected in Wallet</h5> 
+                 <h5>On-chain Betting Leaderboard</h5> 
                  <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Token Name</th>
-                        <th>Token Symbol</th>
-                        <th>Contract Address</th>
-                        <th>Quantity</th>
+                        <th>User Wallet Address</th>
+                        <th>Number of Tokens Won</th>
+                        <th>Number of Betting Pools Participated in</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {tokensInWallet.map((token, idx) => (
+                    {leaderboardData.map((token, idx) => (
                         <tr key={idx}>
                             <td>{token.name}</td>
                             <td>{token.symbol}</td>
                             <td>{token.address}</td>
-                            <td>{token.quantity}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -332,35 +339,6 @@ const supportedTokens = [
             <br />
                  <hr />
                  <br />
-                 <h2 style={{ textAlign: 'left'}}>My Bets</h2>
-                <p>Place bets with your $FAN Tokens and get a chance to win the prize pool !</p>
-                <Row xs={1} md={2} lg={3} className="g-4">
-                {allPools.map((pool, idx) => (
-                    <Col key={idx}>
-                        <Card style={cardStyle}>
-                            <Card.Header>
-                                <Card.Title style={cardTitleStyle}>{pool.question}</Card.Title>
-                            </Card.Header>
-                            <Card.Body>
-                                <Card.Subtitle className="mb-2">
-                                    <Badge bg="secondary" style={{ backgroundColor: styles.secondaryColor }}>{pool.sport}</Badge>
-                                </Card.Subtitle>
-                                <Card.Text style={cardTextStyle}>
-                                    <strong>Created:</strong> {pool.createdTimestamp}<br/>
-                                    <strong>Deadline:</strong> {pool.deadline}<br/>
-                                    <strong>Bettors:</strong> {pool.numberOfBettors}<br/>
-                                    <strong>Total Tokens in Pool:</strong> {pool.totalValues}<br/>
-                                    <hr />
-                                    <strong>Your Bet Answer</strong> {pool.betAnswerOfUser}<br/>
-                                    <strong>Your Total Bet (No of tokens)</strong> {pool.totalBetofGivenUser}<br/>
-                                    <strong>Your Bet Tokens </strong> {pool.bettedTokenSymbolsOfUser}<br/>
-                                    <strong>Your Bet Token Values </strong> {pool.bettedTokenAmountsofUser}<br/>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
 
             </Container>
         </div>
@@ -368,4 +346,4 @@ const supportedTokens = [
     );
 }
 
-export default MyBets;
+export default LeaderBoard;

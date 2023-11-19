@@ -79,13 +79,11 @@ const [selectedPool, setSelectedPool] = useState(null);
 
 const handleClose = () => setShow(false);
 
-
-
     const supportedTokens = [
-        { name: 'Aston Martin Fan Token', symbol: 'ASTON', address: '0x47d75EE96a4603f310Ef3CD4564d3050301Ce785', quantity: 0 },
-        { name: 'Mercedes Fan Token', symbol: 'MERC', address: '0xB1bcA2bcED1F215d4DD4cC8ef98Cb3b3f434c2c3', quantity: 0 },
-        { name: 'Alfa Romeo Fan Token', symbol: 'ALFA', address: '0xf6e87dc0589eA568Cc027C03C86184101544BF68', quantity: 0 },
-        { name: 'Ferrari Fan Token', symbol: 'FERR', address: '0xA7b40eB4D7257EF38dCD5FA3BB720A2a38055C7d', quantity: 0 },
+        { name: 'ALFA Romeo FAN Token ', symbol: 'ALFA', address: '0x1a102e67001389cad23d0bcfc95deb696a3a8f83', quantity: 0 },
+        { name: 'HAAS Fan Token', symbol: 'HAAS', address: '0x9728eaE07B38BEeaC8e7CCb1b3F47C88C7602d99', quantity: 0 },
+        { name: 'MERC Fan Token', symbol: 'MERC', address: '0x5428AAa9410aeBB4A3013919Be54941503C798F0', quantity: 0 },
+        { name: 'Ferrari Fan Token', symbol: 'FERR', address: '0x28e36ACa19A83cE81d8D7A63bb51149186D5B5EB', quantity: 0 },
         // Add more tokens here
     ];
 
