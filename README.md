@@ -1,6 +1,10 @@
 # BetChiliz
 Welcome to BetChiliz, a decentralized pool-based betting platform on the Chiliz Mainnet Layer 1. BetChiliz offers an innovative betting experience using ERC-20 tokens, allowing users to participate in various betting pools for sports and other events.
 
+## Demo Videos
+- Presentation -> https://www.loom.com/share/b62e1fcc91ba49e6a3ca758740da8c8f?sid=dce4164c-5de6-41d6-957c-aa04c08da6da
+- Demo Video -> https://www.loom.com/share/eadc0977dc0c4f409ce312b14e511f69?sid=42377d87-d989-4c3c-9184-34b197933620
+
 ## Features
 - Decentralized Betting: BetChiliz operates on the Chiliz blockchain, ensuring transparency and fairness in all betting activities.
 - Pool-Based Betting System: Users can join different betting pools and place bets using ERC-20 tokens.
